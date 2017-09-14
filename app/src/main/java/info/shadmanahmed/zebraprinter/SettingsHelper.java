@@ -12,6 +12,8 @@ public class SettingsHelper {
     public static final String bluetoothAddressKey = "SMIOTA_ZEBRA_PRINTER_BLUETOOTH_ADDRESS";
     public static final String tcpAddressKey = "SMIOTA_ZEBRA_PRINTER_TCP_ADDRESS";
     public static final String tcpPortKey = "SMIOTA_ZEBRA_PRINTER_TCP_PORT";
+    public static final String bluetoothSelected = "SMIOTA_ZEBRA_PRINTER_BLUETOOTH_SELECTED";
+
     public static final String PREFS_NAME = "OurSavedAddress";
 
     public static String getIp(Context context) {
@@ -41,6 +43,16 @@ public class SettingsHelper {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(tcpPortKey, port);
         editor.commit();
+    }
+    public static void setBluetoothUsed(Context context, boolean set) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(bluetoothSelected, set);
+        editor.commit();
+    }
+    public static boolean isBluetoothUsed(Context context) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
+        return settings.getBoolean(bluetoothSelected, false);
     }
 
     public static void saveBluetoothAddress(Context context, String address) {

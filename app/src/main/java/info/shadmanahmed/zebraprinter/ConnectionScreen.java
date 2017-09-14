@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 /**
  * Created by shadmanahmed on 9/13/17.
@@ -57,32 +58,32 @@ public abstract class ConnectionScreen extends Activity {
             }
         });
 
-        secondTestButton = (Button) this.findViewById(R.id.secondTestButton);
-        secondTestButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                performSecondTest();
-            }
-        });
-        secondTestButton.setVisibility(View.INVISIBLE);
-
-//        RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.radioGroup);
-//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//        secondTestButton = (Button) this.findViewById(R.id.secondTestButton);
+//        secondTestButton.setOnClickListener(new View.OnClickListener() {
 //
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                if (checkedId == R.id.bluetoothRadio) {
-//                    toggleEditField(macAddress, true);
-//                    toggleEditField(portNumber, false);
-//                    toggleEditField(ipAddress, false);
-//                    secondTestButton.setVisibility(desiredVisibilityForSecondTestButton());
-//                } else {
-//                    toggleEditField(portNumber, shouldAllowPortNumberEditing());
-//                    toggleEditField(ipAddress, true);
-//                    toggleEditField(macAddress, false);
-//                    secondTestButton.setVisibility(View.INVISIBLE);
-//                }
+//            public void onClick(View v) {
+//                performSecondTest();
 //            }
 //        });
+//        secondTestButton.setVisibility(View.INVISIBLE);
+
+        RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.bluetoothRadio) {
+                    toggleEditField(macAddress, true);
+                    toggleEditField(portNumber, false);
+                    toggleEditField(ipAddress, false);
+//                    secondTestButton.setVisibility(desiredVisibilityForSecondTestButton());
+                } else {
+                    toggleEditField(portNumber, shouldAllowPortNumberEditing());
+                    toggleEditField(ipAddress, true);
+                    toggleEditField(macAddress, false);
+//                    secondTestButton.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
     protected int desiredVisibilityForSecondTestButton() {
         return View.INVISIBLE;
